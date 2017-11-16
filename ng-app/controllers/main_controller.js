@@ -37,12 +37,12 @@ app.controller(
             function filter_data () {
                 var tmp_filtered_data = [];
 
-                if ($scope.selected_param == null) {
+                if ($scope.selected_param === null) {
                     return;
                 }
 
                 $scope.csv_data.forEach(function (d) {
-                    if (d.PARAMCD === $scope.selected_param) {
+                    if (d['PARAMCD'] === $scope.selected_param) {
                         tmp_filtered_data.push(d);
                     }
                 });
@@ -86,7 +86,6 @@ app.controller(
                     };
                 } else {
                     compare_by_list.forEach(function (o) {
-                        // TODO: need to add marker color
                         traces[o] = {
                             x: [],
                             y: [],
@@ -203,7 +202,7 @@ app.controller(
                                 }
                                 break;
                             case 'M':
-                                if ($scope.med_params.indexOf(obj['PARAMCD']) == -1) {
+                                if ($scope.med_params.indexOf(obj['PARAMCD']) === -1) {
                                     $scope.med_params.push(
                                         obj['PARAMCD']
                                     );
