@@ -1,0 +1,126 @@
+
+
+    <div class="row">
+      <div class="col-md-3">
+
+        <div class="well">
+          <div style="position: relative">
+            <div style="position: absolute; right:0;top:0;">
+              <button class="btn btn-default btn-xs" ng-click="apply_plot_options()">
+                Apply
+              </button>
+            </div>
+          </div>
+
+          <h5>Group By</h5>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="group_by_age"> Age
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="group_by_race"> Race
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="group_by_sex"> Sex
+            </label>
+          </div>
+
+          <h5>Compare By</h5>
+
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="compare_by" value="none">
+              None
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="compare_by" value="age">
+              Age
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" ng-model="compare_by" value="race">
+              Race
+            </label>
+          </div>
+          <div class="radio disabled">
+            <label>
+              <input type="radio" ng-model="compare_by" value="sex">
+              Sex
+            </label>
+          </div>
+
+          <h5>Parameter (Rel Freq)</h5>
+
+          <select ng-model="selected_param">
+            <option value="{{ p }}" data-ng-repeat="p in rf_params">{{ p }}</option>
+          </select>
+          
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <plot plot-data="sample_plots" title="plot_title"></plot>
+
+        <table id="data-table" class="table table-hover" style="margin-bottom: 0px !important;">
+          <thead>
+            <tr>
+
+                <th colspan="50">
+
+                  <div style="position:relative;">
+
+                    <div style="position: absolute; left:0;top:0;">
+                      <export-csv></export-csv>
+                    </div>
+
+                    <h4 class="text-center">
+                      Data Points
+                      <span class="badge badge-inverse align-top">
+                        {{ displayed_items }} of {{ total_items }}
+                      </span>
+                    </h4>
+                    
+                  </div>
+
+                </th>
+            </tr>
+            <tr>
+              <th>Patient</th>
+              <th>Age</th>
+              <th>Race</th>
+              <th>Sex</th>
+              <th>Panel</th>
+              <th>Parameter</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="d in displayed_data">
+              <td>{{ d.PATID }}</td>
+              <td>{{ d.AGEGR1C }}</td>
+              <td>{{ d.RACEGRP }}</td>
+              <td>{{ d.SEXC }}</td>
+              <td>{{ d.PANEL }}</td>
+              <td>{{ d.PARAMCD }}</td>
+              <td>{{ d.AVAL }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-center" ng-show="filtered_data.length > items_per_page">
+          <pagination total-items="displayed_items" ng-model="current_page"
+            max-size="5" boundary-links="true"
+            items-per-page="items_per_page">
+          </pagination>
+        </div>
+      </div>
+    </div>

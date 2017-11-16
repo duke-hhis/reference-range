@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Grifols Data Visualization</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700,300' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div class="navbar navbar-static-top">
+          <div class="container">
+            <div class="navbar-brand">
+              Grifols Data Visualization
+            </div>
+            <div class="navbar-right">
+              <p class="navbar-text">
+                <a href="http://github.com" class="navbar-link">Github Source Code</a>
+              </p>
+            </div>
+          </div>
+      </div>
+
+      <div id="main">
+
+        <div class="container" data-ng-app="GrifolsApp">
+            <div ng-view></div>
+        </div>
+
+      </div>    <!-- id:main -->
+
+    </div>    <!-- id:wrap -->
+    <div class="container">
+      <div id="footer">&copy Duke University</div>
+    </div>
+
+    <!-- Javascript at the end of the document so pages load faster -->
+    <script src="js/papaparse.min.js"></script>
+    <script src="js/plotly.min.js"></script>
+
+    <!-- Angular stuff -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-ui-bootstrap.min.js"></script>
+    <script src="ng-app/app.js"></script>
+    <script src="ng-app/directives/plot.js"></script>
+    <script src="ng-app/directives/export_csv.js"></script>
+    <script src="ng-app/controllers/main_controller.js"></script>
+  
+  </body>
+
+</html>
