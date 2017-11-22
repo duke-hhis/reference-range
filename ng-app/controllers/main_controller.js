@@ -82,7 +82,8 @@ app.controller(
                         y: [],
                         name: 'all',
                         type: 'box',
-                        boxpoints: 'all'
+                        boxpoints: 'all',
+                        pointpos: 0
                     };
                 } else {
                     compare_by_list.forEach(function (o) {
@@ -121,7 +122,11 @@ app.controller(
                     }
                     x_string = x_list.join(' - ');
 
-                    trace = traces[d[compare_by_col]];
+                    if (compare_by_col === null) {
+                        trace = traces['all'];
+                    } else {
+                        trace = traces[d[compare_by_col]];
+                    }
                     trace.x.push(x_string);
                     trace.y.push(d['AVAL']);
                 });
