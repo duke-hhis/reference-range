@@ -18,6 +18,8 @@ app.controller(
             $scope.group_by_race = false;
             $scope.group_by_sex = false;
             $scope.selected_param = null;
+            $scope.selected_panel = null;
+            $scope.panel_parameters = {};  // holds params for each panel
 
             // pagination stuff for data table
             $scope.current_page = 1;
@@ -42,7 +44,7 @@ app.controller(
                 }
 
                 $scope.csv_data.forEach(function (d) {
-                    if (d['PARAMCD'] === $scope.selected_param) {
+                    if (d['PARAMCD'] === $scope.selected_param && d['PANEL'] === $scope.selected_panel) {
                         tmp_filtered_data.push(d);
                     }
                 });
@@ -183,36 +185,16 @@ app.controller(
                                 obj['SEXC']
                             );
                         }
-                        if ($scope.panels.indexOf(obj['PANEL']) === -1) {
-                            $scope.panels.push(
-                                obj['PANEL']
-                            );
+                        if (!(obj['PANEL'] in $scope.panel_parameters)) {
+                            $scope.panel_parameters[obj['PANEL']] = [];
                         }
-                        switch(obj['PARAMTYPE']) {
-                            case 'RF':
-                                if ($scope.rf_params.indexOf(obj['PARAMCD']) === -1) {
-                                    $scope.rf_params.push(
-                                        obj['PARAMCD']
-                                    );
-                                }
 
-                                $scope.csv_data.push(obj);
+                        if (obj['PARAMTYPE'] === 'RF') {
+                            if ($scope.panel_parameters[obj['PANEL']].indexOf(obj['PARAMCD']) === -1)  {
+                                $scope.panel_parameters[obj['PANEL']].push(obj['PARAMCD']);
+                            }
 
-                                break;
-                            case 'ABC':
-                                if ($scope.abc_params.indexOf(obj['PARAMCD']) === -1) {
-                                    $scope.abc_params.push(
-                                        obj['PARAMCD']
-                                    );
-                                }
-                                break;
-                            case 'M':
-                                if ($scope.med_params.indexOf(obj['PARAMCD']) === -1) {
-                                    $scope.med_params.push(
-                                        obj['PARAMCD']
-                                    );
-                                }
-                                break;
+                            $scope.csv_data.push(obj);
                         }
 
                     });

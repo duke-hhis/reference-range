@@ -59,10 +59,16 @@
             </label>
           </div>
 
+          <h5>Panel</h5>
+
+          <select ng-model="selected_panel" ng-change="get_panel_parameters()">
+            <option value="{{ panel }}" data-ng-repeat="(panel, params) in panel_parameters">{{ panel }}</option>
+          </select>
+
           <h5>Parameter (Rel Freq)</h5>
 
-          <select ng-model="selected_param">
-            <option value="{{ p }}" data-ng-repeat="p in rf_params">{{ p }}</option>
+          <select ng-model="selected_param" ng-disabled="selected_panel === null">
+            <option value="{{ p }}" data-ng-repeat="p in panel_parameters[selected_panel]">{{ p }}</option>
           </select>
           
         </div>
