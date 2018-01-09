@@ -20,6 +20,7 @@ app.controller(
             $scope.selected_param = null;
             $scope.selected_panel = null;
             $scope.panel_parameters = {};  // holds params for each panel
+            $scope.param_unit = null;  // for display only
 
             // pagination stuff for data table
             $scope.current_page = 1;
@@ -34,6 +35,14 @@ app.controller(
 
             $scope.$watch('filtered_data', function () {
                 set_totals();
+            });
+
+            $scope.$watch('selected_panel', function () {
+                if ($scope.selected_panel === 'Cytokines') {
+                    $scope.param_unit = 'pg/ml';
+                } else {
+                    $scope.param_unit = 'Rel Freq';
+                }
             });
 
             function filter_data () {
@@ -189,7 +198,7 @@ app.controller(
                             $scope.panel_parameters[obj['PANEL']] = [];
                         }
 
-                        if (obj['PARAMTYPE'] === 'RF') {
+                        if (obj['PARAMTYPE'] === 'RF' || obj['PARAMTYPE'] === 'pg/ml') {
                             if ($scope.panel_parameters[obj['PANEL']].indexOf(obj['PARAMCD']) === -1)  {
                                 $scope.panel_parameters[obj['PANEL']].push(obj['PARAMCD']);
                             }
