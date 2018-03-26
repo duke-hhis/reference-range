@@ -53,7 +53,7 @@ app.controller(
                 }
 
                 $scope.csv_data.forEach(function (d) {
-                    if (d['PARAMCD'] === $scope.selected_param && d['PANEL'] === $scope.selected_panel) {
+                    if (d['Population name'] === $scope.selected_param && d['Panel'] === $scope.selected_panel) {
                         tmp_filtered_data.push(d);
                     }
                 });
@@ -131,7 +131,12 @@ app.controller(
                     if ($scope.group_by_sex) {
                         x_list.push(d['SEXC'])
                     }
-                    x_string = x_list.join(' - ');
+
+                    if (x_list.length === 0) {
+                        x_string = 'All';
+                    } else {
+                        x_string = x_list.join(' - ');
+                    }
 
                     if (compare_by_col === null) {
                         trace = traces['all'];
@@ -139,7 +144,7 @@ app.controller(
                         trace = traces[d[compare_by_col]];
                     }
                     trace.x.push(x_string);
-                    trace.y.push(d['AVAL']);
+                    trace.y.push(d['Value']);
                 });
 
                 $scope.sample_plots = Object.values(traces);
@@ -174,9 +179,9 @@ app.controller(
                     $scope.med_params = [];
                     
                     results.data.forEach(function (obj) {
-                        if ($scope.patients.indexOf(obj['PATID']) === -1) {
+                        if ($scope.patients.indexOf(obj['Subject ID']) === -1) {
                             $scope.patients.push(
-                                obj['PATID']
+                                obj['Subject ID']
                             );
                         }
                         if ($scope.age_groups.indexOf(obj['AGEGR1C']) === -1) {
@@ -194,13 +199,13 @@ app.controller(
                                 obj['SEXC']
                             );
                         }
-                        if (!(obj['PANEL'] in $scope.panel_parameters)) {
-                            $scope.panel_parameters[obj['PANEL']] = [];
+                        if (!(obj['Panel'] in $scope.panel_parameters)) {
+                            $scope.panel_parameters[obj['Panel']] = [];
                         }
 
-                        if (obj['PARAMTYPE'] === 'RF' || obj['PARAMTYPE'] === 'pg/ml') {
-                            if ($scope.panel_parameters[obj['PANEL']].indexOf(obj['PARAMCD']) === -1)  {
-                                $scope.panel_parameters[obj['PANEL']].push(obj['PARAMCD']);
+                        if (obj['Unit'] === '%') {
+                            if ($scope.panel_parameters[obj['Panel']].indexOf(obj['Population name']) === -1)  {
+                                $scope.panel_parameters[obj['Panel']].push(obj['Population name']);
                             }
 
                             $scope.csv_data.push(obj);
@@ -226,13 +231,14 @@ app.controller(
                 var exported_csv = Papa.unparse(
                     {
                         fields: [
-                            "PATID",
+                            "Subject ID",
                             "AGEGR1C",
                             "RACEGRP",
                             "SEXC",
-                            "PANEL",
-                            "PARAMCD",
-                            "AVAL"
+                            "Panel",
+                            "Population name",
+                            "Value",
+                            "URI"
                         ],
                         data: angular.toJson($scope.filtered_data)
                     }

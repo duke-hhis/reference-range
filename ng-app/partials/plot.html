@@ -101,7 +101,7 @@
                 </th>
             </tr>
             <tr>
-              <th>Patient</th>
+              <th>Subject ID</th>
               <th>Age</th>
               <th>Race</th>
               <th>Sex</th>
@@ -112,13 +112,13 @@
           </thead>
           <tbody>
             <tr ng-repeat="d in displayed_data">
-              <td>{{ d.PATID }}</td>
+              <td>{{ d['Subject ID'] }}</td>
               <td>{{ d.AGEGR1C }}</td>
               <td>{{ d.RACEGRP }}</td>
               <td>{{ d.SEXC }}</td>
-              <td>{{ d.PANEL }}</td>
-              <td>{{ d.PARAMCD }}</td>
-              <td>{{ d.AVAL }}</td>
+              <td>{{ d.Panel }}</td>
+              <td>{{ d['Population name'] }}</td>
+              <td>{{ d.Value }}</td>
             </tr>
           </tbody>
         </table>
