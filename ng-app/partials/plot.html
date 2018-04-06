@@ -70,6 +70,10 @@
           <select ng-model="selected_param" ng-disabled="selected_panel === null">
             <option value="{{ p }}" data-ng-repeat="p in panel_parameters[selected_panel] | orderBy: p">{{ p }}</option>
           </select>
+
+          <div style="padding-top: 9px" ng-show="param_has_uri">
+            <a href="{{ parameter_uri_map[selected_param] }}" target="_blank">Cell Ontology for {{ selected_param }}</a>
+          </div>
           
         </div>
       </div>

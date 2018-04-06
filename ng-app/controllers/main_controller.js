@@ -20,6 +20,7 @@ app.controller(
             $scope.selected_param = null;
             $scope.selected_panel = null;
             $scope.panel_parameters = {};  // holds params for each panel
+            $scope.parameter_uri_map = {};  // to find the param URI for selected param
             $scope.param_unit = null;  // for display only
 
             // pagination stuff for data table
@@ -43,6 +44,10 @@ app.controller(
                 } else {
                     $scope.param_unit = 'Rel Freq';
                 }
+            });
+
+            $scope.$watch('selected_param', function () {
+                $scope.param_has_uri = $scope.selected_param in $scope.parameter_uri_map;
             });
 
             function filter_data () {
@@ -206,6 +211,11 @@ app.controller(
                         if (obj['Unit'] === '%') {
                             if ($scope.panel_parameters[obj['Panel']].indexOf(obj['Population name']) === -1)  {
                                 $scope.panel_parameters[obj['Panel']].push(obj['Population name']);
+                            }
+
+                            // add URI map for parameter if we haven't already seen it
+                            if (!(obj['Population name'] in $scope.parameter_uri_map) && obj['URI'] !== '') {
+                                $scope.parameter_uri_map[obj['Population name']] = obj['URI'];
                             }
 
                             $scope.csv_data.push(obj);
