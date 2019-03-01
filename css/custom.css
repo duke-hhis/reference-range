@@ -146,3 +146,26 @@ th.center {
 .no-wrap {
   white-space: nowrap;
 }
+
+.pad-left-18 {
+  padding-left: 18px;
+}
+
+.green-bg {
+    background-color: #cceac7;
+}
+.yellow-bg {
+    background-color: #e6f5c9;
+}
+.violet-bg {
+    background-color: #e4d6ff;
+}
+.red-bg {
+    background-color: #e2c6c4;
+}
+.blue-bg {
+    background-color: #dde9f1;
+}
+.orange-bg {
+    background-color: #fdcdac;
+}
