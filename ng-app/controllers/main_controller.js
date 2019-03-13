@@ -19,7 +19,7 @@ app.controller(
             $scope.group_by_sex = false;
             $scope.selected_param = null;
             $scope.selected_panel = null;
-            $scope.panel_parameters = {};  // holds params for each panel
+            $scope.panel_parameters = {};  // holds cell subsets for each panel
             $scope.parameter_uri_map = {};  // to find the param URI for selected param
             $scope.param_unit = null;  // for display only
 
@@ -241,13 +241,13 @@ app.controller(
                 var exported_csv = Papa.unparse(
                     {
                         fields: [
-                            "Subject ID",
+                            "SUBJECT ID",
                             "AGEGR1C",
                             "RACEGRP",
                             "SEXC",
-                            "Panel",
-                            "Population name",
-                            "Value",
+                            "PANEL",
+                            "CELL SUBSET",
+                            "VALUE",
                             "URI"
                         ],
                         data: angular.toJson($scope.filtered_data)
