@@ -1,4 +1,4 @@
-Subject ID,AGE,AGEGR1N,AGEGR1C,RACEGRP,SEXN,FASFL,SEXC,Batch date,Panel,Population name,Unit,Parent,Value,URI
+SUBJECT ID,AGE,AGEGR1N,AGEGR1C,RACEGRP,SEXN,FASFL,SEXC,Batch date,PANEL,CELL SUBSET,Unit,Parent,VALUE,URI
 3130035837,23,1,18-29,Caucasian,1,Y,Female,02JUL2015,Tcell,Effector Memory CD4+ T cells,%,CD4+,7.15,http://purl.obolibrary.org/obo/CL_0000905
 3400338745,22,1,18-29,African-American,0,Y,Male,01JUL2015,DCMNK,NK cells,%,Linage-,8.07,
 3400338745,22,1,18-29,African-American,0,Y,Male,01JUL2015,DCMNK,Myeloid DC (Live Scatter),%,Live Scatter,0.6829999999999999,http://purl.obolibrary.org/obo/CL_0001057

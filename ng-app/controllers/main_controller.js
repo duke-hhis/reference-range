@@ -58,7 +58,7 @@ app.controller(
                 }
 
                 $scope.csv_data.forEach(function (d) {
-                    if (d['Population name'] === $scope.selected_param && d['Panel'] === $scope.selected_panel) {
+                    if (d['CELL SUBSET'] === $scope.selected_param && d['PANEL'] === $scope.selected_panel) {
                         tmp_filtered_data.push(d);
                     }
                 });
@@ -149,7 +149,7 @@ app.controller(
                         trace = traces[d[compare_by_col]];
                     }
                     trace.x.push(x_string);
-                    trace.y.push(d['Value']);
+                    trace.y.push(d['VALUE']);
                 });
 
                 $scope.sample_plots = Object.values(traces);
@@ -184,9 +184,9 @@ app.controller(
                     $scope.med_params = [];
                     
                     results.data.forEach(function (obj) {
-                        if ($scope.patients.indexOf(obj['Subject ID']) === -1) {
+                        if ($scope.patients.indexOf(obj['SUBJECT ID']) === -1) {
                             $scope.patients.push(
-                                obj['Subject ID']
+                                obj['SUBJECT ID']
                             );
                         }
                         if ($scope.age_groups.indexOf(obj['AGEGR1C']) === -1) {
@@ -204,18 +204,18 @@ app.controller(
                                 obj['SEXC']
                             );
                         }
-                        if (!(obj['Panel'] in $scope.panel_parameters)) {
-                            $scope.panel_parameters[obj['Panel']] = [];
+                        if (!(obj['PANEL'] in $scope.panel_parameters)) {
+                            $scope.panel_parameters[obj['PANEL']] = [];
                         }
 
                         if (obj['Unit'] === '%') {
-                            if ($scope.panel_parameters[obj['Panel']].indexOf(obj['Population name']) === -1)  {
-                                $scope.panel_parameters[obj['Panel']].push(obj['Population name']);
+                            if ($scope.panel_parameters[obj['PANEL']].indexOf(obj['CELL SUBSET']) === -1)  {
+                                $scope.panel_parameters[obj['PANEL']].push(obj['CELL SUBSET']);
                             }
 
                             // add URI map for parameter if we haven't already seen it
-                            if (!(obj['Population name'] in $scope.parameter_uri_map) && obj['URI'] !== '') {
-                                $scope.parameter_uri_map[obj['Population name']] = obj['URI'];
+                            if (!(obj['CELL SUBSET'] in $scope.parameter_uri_map) && obj['URI'] !== '') {
+                                $scope.parameter_uri_map[obj['CELL SUBSET']] = obj['URI'];
                             }
 
                             $scope.csv_data.push(obj);
