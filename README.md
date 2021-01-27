@@ -1,5 +1,7 @@
 # Establishment of normative ranges of the healthy human immune system with comprehensive polychromatic flow cytometry profiling
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4472598.svg)](https://doi.org/10.5281/zenodo.4472598)
+
 This repository contains an interactive web application for data visualization to accompany the publication:
 
 > Yi JS, Rosa-Bray M, Staats J, Zakroysky P, Chan C, Russo MA, et al. (2019) Establishment of normative ranges of the healthy 
