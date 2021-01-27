@@ -2,7 +2,7 @@
 
 This repository contains an interactive web application for data visualization to accompany the publication:
 
-> Yi JS, Rosa-BrayM, StaatsJ, ZakroyskyP, ChanC, RussoMA, et al. (2019) Establishment of normative ranges of the healthy 
+> Yi JS, Rosa-Bray M, Staats J, Zakroysky P, Chan C, Russo MA, et al. (2019) Establishment of normative ranges of the healthy 
 human immune system with comprehensive polychromatic flow cytometry profiling. 
 PLoS ONE 14(12):e0225512. [https://doi.org/10.1371/journal.pone.0225512](https://doi.org/10.1371/journal.pone.0225512)
 
